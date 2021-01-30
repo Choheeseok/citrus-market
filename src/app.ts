@@ -3,15 +3,32 @@ import bodyParser from "body-parser";
 import nunjucks from "nunjucks";
 import router from "./controllers";
 import session from "express-session";
+import mongoose from "mongoose";
 
 class App {
   readonly app: express.Application;
   constructor() {
     this.app = express();
+    this.connectDB();
     this.setViewEngine();
     this.setMiddleware();
     this.setStatic();
     this.setRoute();
+  }
+
+  connectDB() {
+    mongoose.Promise = global.Promise;
+
+    const db = mongoose.connection;
+    db.on("error", console.error.bind(console, "connection error : "));
+    db.once("open", () => {
+      console.log("MongoDB connected");
+    });
+
+    mongoose.connect("mongodb://127.0.0.1/citrus-market", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
   }
 
   setViewEngine() {

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import home from "./home";
-import login from "./admin";
-import products from "./products";
-import mypage from "./mypage";
+import home from "./home/home.controller";
+import login from "./admin/admin.controllers";
+import products from "./products/products.controller";
+import mypage from "./mypage/mypage.controller";
 
 const router = Router();
 
