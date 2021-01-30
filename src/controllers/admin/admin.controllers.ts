@@ -1,5 +1,5 @@
 import { Router } from "express";
-import ctrl from "./admin.ctrl";
+import ctrl from "./admin.service";
 
 const router = Router();
 
