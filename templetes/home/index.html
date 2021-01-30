@@ -2,8 +2,18 @@
 -%}
 <div>Home Page</div>
 <div class="input-group mb-3">
+  {% if not isLogined %}
   <a href="/admin/signin">
     <button type="button" class="btn btn-warning">로그인</button>
   </a>
+  {% else %}
+  <div>
+    <h3>Hi {{nickname}}!</h3>
+    <a href="/admin/signout">
+      <button type="button" class="btn btn-warning">로그아웃</button>
+    </a>
+  </div>
+  <div>추천 상품들 . . .</div>
+  {% endif %}
 </div>
 {% endblock %}

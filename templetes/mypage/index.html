@@ -1,0 +1,20 @@
+{% set title = "PRODUCTS PAGE" %} {% extends "layout/base.html" %} {% block content
+-%}
+
+<div>My Page</div>
+  <div class="input-group mb-3">
+  {% if nickname %}
+    <div>
+      <h2>Hi {{nickname}}</h2>
+    </div>
+    <a href="/admin/signout">
+      <button type="button" class="btn btn-warning">로그아웃</button>
+    </a>
+  {% else %}
+    <a href="/admin/signin">
+      <button type="button" class="btn btn-warning">로그인</button>
+    </a>
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
