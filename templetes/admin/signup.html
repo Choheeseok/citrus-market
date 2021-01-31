@@ -2,46 +2,56 @@
 content -%}
 
 <div>Sign Up Page</div>
-<div class="input-group mb-3">
-  <span class="input-group-text btn-warning" id="basic-addon1">Email</span>
-  <input
-    type="text"
-    class="form-control"
-    placeholder="Email"
-    aria-label="Email"
-    aria-describedby="basic-addon1"
-  />
-</div>
-<div class="input-group mb-3">
-  <span class="input-group-text btn-warning" id="basic-addon1">Password</span>
-  <input
-    type="password"
-    class="form-control"
-    placeholder="Password"
-    aria-label="Password"
-    aria-describedby="basic-addon1"
-  />
-</div>
-<div class="input-group mb-3">
-  <span class="input-group-text btn-warning" id="basic-addon1"
-    >Confirm Password</span
-  >
-  <input
-    type="password"
-    class="form-control"
-    placeholder="Confirm Password"
-    aria-label="Confirm Password"
-    aria-describedby="basic-addon1"
-  />
-</div>
-<div class="input-group mb-3">
-  <span class="input-group-text btn-warning" id="basic-addon1">Nickname</span>
-  <input
-    type="text"
-    class="form-control"
-    placeholder="Nickname"
-    aria-label="Nickname"
-    aria-describedby="basic-addon1"
-  />
-</div>
+<form action="/admin/signup" method="post">
+  <div class="input-group mb-3">
+    <span class="input-group-text btn-warning" id="basic-addon1">Email</span>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Email"
+      aria-label="Email"
+      aria-describedby="basic-addon1"
+      name="email"
+      value="{{user.email}}"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text btn-warning" id="basic-addon1">Password</span>
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      aria-label="Password"
+      aria-describedby="basic-addon1"
+      name="password"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text btn-warning" id="basic-addon1"
+      >Confirm Password</span
+    >
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Confirm Password"
+      aria-label="Confirm Password"
+      aria-describedby="basic-addon1"
+      name="confirmPassword"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text btn-warning" id="basic-addon1">Nickname</span>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nickname"
+      aria-label="Nickname"
+      aria-describedby="basic-addon1"
+      name="nickname"
+      value="{{user.nickname}}"
+    />
+  </div>
+  <div>{{warningMessage}}</div>
+  <button type="submit" class="btn btn-warning">등록</button>
+</form>
 {% endblock %}

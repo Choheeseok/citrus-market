@@ -5,6 +5,8 @@ const router = Router();
 
 router.get("/signup", ctrl.get_signup);
 
+router.post("/signup", ctrl.post_signup);
+
 router.get("/signin", ctrl.get_signin);
 
 router.post("/signin", ctrl.post_signin);

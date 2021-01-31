@@ -12,8 +12,4 @@ const getUserId = (req: Request): string | undefined => {
   return req.session.userId;
 };
 
-export = {
-  isLogined,
-  getNickname,
-  getUserId,
-};
+export = { isLogined, getNickname, getUserId };

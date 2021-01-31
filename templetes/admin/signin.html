@@ -13,6 +13,7 @@ content -%}
         placeholder="Email"
         aria-label="Email"
         aria-describedby="basic-addon1"
+        value="{{user.email}}"
       />
     </div>
     <div class="input-group mb-3">
@@ -20,7 +21,7 @@ content -%}
         >Password</span
       >
       <input
-        name="pwd"
+        name="password"
         type="password"
         class="form-control"
         placeholder="Password"
@@ -28,6 +29,7 @@ content -%}
         aria-describedby="basic-addon1"
       />
     </div>
+    <div>{{warningMessage}}</div>
     <button type="submit" class="btn btn-warning">로그인</button>
     <a href="/admin/signup">
       <button type="button" class="btn btn-warning">회원가입</button>

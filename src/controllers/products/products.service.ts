@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import auth from "../../libs/auth";
-import { checkWriteForm } from "../../libs/product";
+import { checkOmission } from "../../libs/product";
 import ProductModel from "../../models/product/product";
 import ProductWriteForm from "../../models/product/product.write";
 
@@ -19,11 +19,11 @@ const get_products_write = async (req: Request, res: Response) => {
 };
 
 const post_products_write = async (req: Request, res: Response) => {
-  const omission: string = checkWriteForm(req.body);
+  const product: ProductWriteForm = req.body;
+  const omission: string = checkOmission(req.body);
   if (omission) {
-    const product: ProductWriteForm = req.body;
     res.render("products/write.html", {
-      omission: `${omission}은 필수입니다`,
+      warningMessage: `${omission}은 필수입니다`,
       product,
     });
   } else {
