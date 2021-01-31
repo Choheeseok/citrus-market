@@ -9,7 +9,7 @@ const checkOmission = (data: UserSigninForm): string => {
   return str;
 };
 
-const checkPasswordFindOne = async (data: UserSigninForm): Promise<any> => {
+const checkPassword = async (data: UserSigninForm): Promise<any> => {
   const user = await UserModel.findOne({
     email: data.email,
     password: data.password,
@@ -18,4 +18,4 @@ const checkPasswordFindOne = async (data: UserSigninForm): Promise<any> => {
   return user;
 };
 
-export = { checkOmission, checkPasswordFindOne };
+export = { checkOmission, checkPassword };

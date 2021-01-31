@@ -32,8 +32,7 @@ const post_products_write = async (req: Request, res: Response) => {
       ownerId: auth.getUserId(req),
       ownerNickname: auth.getNickname(req),
     };
-    const ret = await ProductModel.create(data);
-    console.log(ret);
+    await ProductModel.create(data);
     res.redirect("/products");
   }
 };
