@@ -8,7 +8,12 @@ const getNickname = (req: Request): string | undefined => {
   return req.session.nickname;
 };
 
+const getUserId = (req: Request): string | undefined => {
+  return req.session.userId;
+};
+
 export = {
   isLogined,
   getNickname,
+  getUserId,
 };

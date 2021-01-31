@@ -24,10 +24,14 @@ const ProductSchema = new Schema(
       type: String,
       require: [true, "작성자ID"],
     },
+    ownerNickname: {
+      type: String,
+      require: [true, "작성자 닉네임"],
+    },
   },
   { collection: "Product" }
 );
 
 const ProductModel = model("Product", ProductSchema);
 
-export { ProductModel };
+export default ProductModel;

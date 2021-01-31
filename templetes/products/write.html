@@ -1,0 +1,58 @@
+{% set title = "PRODUCT WRITE PAGE" %} {% extends "layout/base.html" %} {% block
+content -%}
+
+<div>Product Write Page</div>
+<form action="/products/write" method="post">
+  <div class="input-group mb-3">
+    <span class="input-group-text btn-warning" id="basic-addon1">제품명</span>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Name"
+      aria-label="Name"
+      aria-describedby="basic-addon1"
+      name="name"
+      value="{{product.name}}"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text btn-warning" id="basic-addon1">가격</span>
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Price"
+      aria-label="Price"
+      aria-describedby="basic-addon1"
+      name="price"
+      value="{{product.price}}"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text btn-warning" id="basic-addon1">설명</span>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Description"
+      aria-label="Description"
+      aria-describedby="basic-addon1"
+      name="description"
+      value="{{product.description}}"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text btn-warning" id="basic-addon1">사진</span>
+    <input
+      class="form-control"
+      type="file"
+      id="formFileMultiple"
+      multiple
+      name="images"
+    />
+  </div>
+  <div>
+    <div>{{omission}}</div>
+    <button type="submit" class="btn btn-warning">등록</button>
+  </div>
+</form>
+
+{% endblock %}

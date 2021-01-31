@@ -2,7 +2,29 @@
 -%}
 
 <div>Products Page</div>
+<div>
+  <a {% if isLogined %} href="/products/write"
+      {% else %} href = "/admin/signin"
+    {% endif %}>
+    <button type="button" class="btn btn-warning">상품등록</button>
+  </a>
+</div>
 <div class="row row-cols-1 row-cols-md-4 g-4">
+  {% for product in products %}
+    <div class="col">
+    <div class="card h-100">
+      <img src="/static/free-icon-tangerine-1450140.png" class="card-img-top" alt="tangerine-img">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{product.ownerNickname}}</h6>
+        <p class="card-text">{{product.description}}</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">{{product.createdAt}}</small>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
   <div class="col">
     <div class="card h-100">
       <img src="/static/free-icon-tangerine-1450140.png" class="card-img-top" alt="tangerine-img">
