@@ -7,6 +7,7 @@ import ProductWriteForm from "../../models/product/product.write";
 const get_products = async (req: Request, res: Response) => {
   const isLogined = auth.isLogined(req);
   const products = await ProductModel.find();
+  console.log(products);
   res.render("products/index.html", { isLogined, products });
 };
 
@@ -37,8 +38,15 @@ const post_products_write = async (req: Request, res: Response) => {
   }
 };
 
+const get_products_detail = async (req: Request, res: Response) => {
+  const product = await ProductModel.findById(req.params.id);
+  console.log(product);
+  res.render("products/detail.html", { product });
+};
+
 export = {
   get_products,
   get_products_write,
   post_products_write,
+  get_products_detail,
 };

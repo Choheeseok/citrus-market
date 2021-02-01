@@ -9,4 +9,6 @@ router.get("/write", ctrl.get_products_write);
 
 router.post("/write", ctrl.post_products_write);
 
+router.get("/:id", ctrl.get_products_detail);
+
 export default router;
