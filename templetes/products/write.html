@@ -2,7 +2,8 @@
 content -%}
 
 <div>Product Write Page</div>
-<form action="/products/write" method="post">
+
+<form action="/products/write" method="post" enctype="multipart/form-data">
   <div class="input-group mb-3">
     <span class="input-group-text btn-warning" id="basic-addon1">제품명</span>
     <input
@@ -47,6 +48,7 @@ content -%}
       id="formFileMultiple"
       multiple
       name="images"
+      accept="image/*"
     />
   </div>
   <div>

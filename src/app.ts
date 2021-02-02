@@ -40,6 +40,7 @@ class App {
 
   setMiddleware() {
     this.app.use(bodyParser.json());
+    this.app.use(bodyParser.raw({ type: "image/*", limit: "10mb" }));
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(
       session({
@@ -52,6 +53,7 @@ class App {
 
   setStatic() {
     this.app.use("/static", express.static("static"));
+    this.app.use("/uploads", express.static("uploads"));
   }
 
   setRoute() {

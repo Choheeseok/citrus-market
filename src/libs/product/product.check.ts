@@ -1,4 +1,4 @@
-import ProductWriteForm from "../models/product/product.write";
+import ProductWriteForm from "../../models/product/product.write";
 
 const checkOmission = (data: ProductWriteForm): string => {
   let omission: string = ``;

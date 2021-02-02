@@ -23,5 +23,10 @@
     "baseUrl": "."
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.tsx", "./src/**/*.ts"]
+  "include": [
+    "./src/**/*.tsx",
+    "./src/**/*.ts",
+    "src/libs/user/user.signin.checkts",
+    "src/libs/user.signupts"
+  ]
 }

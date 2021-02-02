@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
+import multer from "multer";
+import { type } from "os";
 import auth from "../../libs/auth";
-import { checkOmission } from "../../libs/product";
+import { checkOmission } from "../../libs/product/product.check";
 import ProductModel from "../../models/product/product";
 import ProductWriteForm from "../../models/product/product.write";
 
 const get_products = async (req: Request, res: Response) => {
   const isLogined = auth.isLogined(req);
   const products = await ProductModel.find();
-  console.log(products);
   res.render("products/index.html", { isLogined, products });
 };
 
@@ -19,8 +20,22 @@ const get_products_write = async (req: Request, res: Response) => {
   }
 };
 
+interface multerFile {
+  buffer: Buffer;
+  encoding: string;
+  fieldname: string;
+  mimetype: string;
+  originalname: string;
+  size: number;
+}
+
 const post_products_write = async (req: Request, res: Response) => {
-  const product: ProductWriteForm = req.body;
+  let filenames: string[] = [];
+  if (req.files.constructor == Array) {
+    filenames = req.files.map((file) => file.filename);
+  }
+  const product: ProductWriteForm = { ...req.body, images: filenames };
+  console.log(product);
   const omission: string = checkOmission(req.body);
   if (omission) {
     res.render("products/write.html", {
@@ -29,7 +44,7 @@ const post_products_write = async (req: Request, res: Response) => {
     });
   } else {
     const data = {
-      ...req.body,
+      ...product,
       ownerId: auth.getUserId(req),
       ownerNickname: auth.getNickname(req),
     };
@@ -40,7 +55,6 @@ const post_products_write = async (req: Request, res: Response) => {
 
 const get_products_detail = async (req: Request, res: Response) => {
   const product = await ProductModel.findById(req.params.id);
-  console.log(product);
   res.render("products/detail.html", { product });
 };
 
