@@ -10,16 +10,6 @@ router.get("/write", ctrl.get_products_write);
 
 router.post("/write", upload.array("images"), ctrl.post_products_write);
 
-// router.post(
-//   "/write",
-//   upload.array("img"),
-//   (req, res) => {
-//     console.log(req.files);
-//     ctrl.post_products_write(req, res);
-//   },
-//   ctrl.post_products_write
-// );
-
 router.get("/:id", ctrl.get_products_detail);
 
 export default router;

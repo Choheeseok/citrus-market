@@ -35,7 +35,7 @@ const post_products_write = async (req: Request, res: Response) => {
     filenames = req.files.map((file) => file.filename);
   }
   const product: ProductWriteForm = { ...req.body, images: filenames };
-  console.log(product);
+
   const omission: string = checkOmission(req.body);
   if (omission) {
     res.render("products/write.html", {
