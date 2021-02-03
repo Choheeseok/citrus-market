@@ -26,15 +26,7 @@ block content -%}
     </ol>
 
     <div class="carousel-inner">
-      {% for i in range(0, product.images.length) %} {#
-      <div class="carousel-item active">
-        <img
-          src="/static/free-icon-tangerine-1450140.png"
-          class="d-block w-100"
-          alt="product image"
-        />
-      </div>
-      #} {%if i === 0%}
+      {% for i in range(0, product.images.length) %} {%if i === 0%}
       <div class="carousel-item active">
         <img
           src="/uploads/{{product.images[i]}}"
@@ -71,13 +63,13 @@ block content -%}
       <span class="visually-hidden">Next</span>
     </a>
   </div>
-  <p class="h4" style="position: relative; left: 20%">
-    <strong>작성자</strong>
+  <p class="h3" style="position: relative; left: 20%">
+    <strong>{{product.ownerNickname}}</strong>
   </p>
-  <hr style="position: relative; left: 20%; width: 60%" />
   <p class="h3" style="position: relative; left: 20%">{{product.name}}</p>
+  <hr style="position: relative; left: 20%; width: 60%" />
   <p class="h6" style="position: relative; left: 20%">
-    <small>{{product.createdAt}}</small>
+    <small>{{dateFormat}}</small>
   </p>
   <p class="h4" style="position: relative; left: 20%">
     <strong>{{product.price}}</strong>

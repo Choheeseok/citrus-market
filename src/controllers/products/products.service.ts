@@ -1,14 +1,24 @@
 import { Request, Response } from "express";
-import multer from "multer";
-import { type } from "os";
 import auth from "../../libs/auth";
+import date from "../../libs/date";
 import { checkOmission } from "../../libs/product/product.check";
 import ProductModel from "../../models/product/product";
 import ProductWriteForm from "../../models/product/product.write";
 
 const get_products = async (req: Request, res: Response) => {
   const isLogined = auth.isLogined(req);
-  const products = await ProductModel.find();
+  const dbProducts = await ProductModel.find();
+  let products: any[] = [];
+  if (dbProducts.constructor === Array) {
+    const now = new Date();
+    products = dbProducts.map((product) => {
+      return {
+        ...product._doc,
+        timeDiff: date.timeDifference(now, product.createdAt),
+      };
+    });
+  }
+
   res.render("products/index.html", { isLogined, products });
 };
 
@@ -20,18 +30,9 @@ const get_products_write = async (req: Request, res: Response) => {
   }
 };
 
-interface multerFile {
-  buffer: Buffer;
-  encoding: string;
-  fieldname: string;
-  mimetype: string;
-  originalname: string;
-  size: number;
-}
-
 const post_products_write = async (req: Request, res: Response) => {
   let filenames: string[] = [];
-  if (req.files.constructor == Array) {
+  if (req.files.constructor === Array) {
     filenames = req.files.map((file) => file.filename);
   }
   const product: ProductWriteForm = { ...req.body, images: filenames };
@@ -55,7 +56,8 @@ const post_products_write = async (req: Request, res: Response) => {
 
 const get_products_detail = async (req: Request, res: Response) => {
   const product = await ProductModel.findById(req.params.id);
-  res.render("products/detail.html", { product });
+  const dateFormat = date.dateFormat(product.createdAt);
+  res.render("products/detail.html", { product, dateFormat });
 };
 
 export = {
