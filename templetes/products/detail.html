@@ -1,7 +1,4 @@
 {% extends "layout/base.html" %} {% block content -%}
-
-<div>Product Detail Page</div>
-
 <div class="wrapper">
   <div
     id="carouselExampleIndicators"
@@ -43,6 +40,7 @@
       </div>
       {%endif%} {% endfor %}
     </div>
+    {% if product.images.length > 0 %}
     <a
       class="carousel-control-prev"
       href="#carouselExampleIndicators"
@@ -61,6 +59,7 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </a>
+    {% endfor %}
   </div>
   <p class="h3" style="position: relative; left: 20%">
     <strong>{{product.ownerNickname}}</strong>
@@ -82,12 +81,5 @@
     <small>{{product.views}}</small>
   </p>
 </div>
-<script>
-  $("#carousel-control-prev").on("click", () => {
-    $("#carouselExampleIndicators").carousel("prev");
-  });
-  $("#carousel-control-next").on("click", () => {
-    $("#carouselExampleIndicators").carousel("next");
-  });
-</script>
+
 {% endblock %}

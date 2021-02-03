@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import auth from "../../libs/auth";
 import date from "../../libs/date";
+import getTimeFormatProducts from "../../libs/product/dateFormat";
 import validatePostProduct from "../../libs/product/post.validation";
 import ProductModel from "../../models/product/product";
 import ProductWriteForm from "../../models/product/product.write";
@@ -8,17 +9,7 @@ import ProductWriteForm from "../../models/product/product.write";
 const get_products = async (req: Request, res: Response) => {
   const isLogined = auth.isLogined(req);
   const dbProducts = await ProductModel.find();
-  let products: any[] = [];
-  if (dbProducts.constructor === Array) {
-    const now = new Date();
-    products = dbProducts.map((product) => {
-      return {
-        ...product._doc,
-        timeDiff: date.timeDifference(now, product.createdAt),
-      };
-    });
-  }
-
+  const products = getTimeFormatProducts(dbProducts);
   res.render("products/index.html", { isLogined, products });
 };
 

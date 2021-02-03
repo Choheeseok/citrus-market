@@ -1,7 +1,6 @@
 {% extends "layout/base.html" %} {% block content -%}
 
-<div>My Page</div>
-  <div class="input-group mb-3">
+<div class="input-group3">
   {% if nickname %}
     <div>
       <h2>Hi {{nickname}}</h2>
@@ -12,6 +11,32 @@
     <a href="/admin/signout">
       <button type="button" class="btn btn-warning">로그아웃</button>
     </a>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+  {% for product in products %}
+    <div class="col">
+    <a href="/products/{{product._id}}" style="text-decoration: none">
+      <div class="card h-100">
+        <img {% if product.images[0] %}
+            src="/uploads/{{product.images[0]}}"
+            {% else %}
+            src="/static/free-icon-tangerine-1450140.png"
+            {% endif %}
+             class="card-img-top" alt="tangerine-img" />
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{product.ownerNickname}}</h6>
+          <p class="card-text">{{product.description}}</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">{{product.timeDiff}} 전</small>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
   {% else %}
     <a href="/admin/signin">
       <button type="button" class="btn btn-warning">로그인</button>
@@ -19,4 +44,5 @@
   {% endif %}
   </div>
 </div>
+
 {% endblock %}

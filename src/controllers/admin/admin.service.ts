@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import UserLoggedInForm from "../../models/user/user.loggedIn";
 import UserModel from "../../models/user/user";
-import validateSignup from "../../libs/user/user.signup.validation";
-import validateSignin from "../../libs/user/user.signin.validation";
+import validateSignup from "../../libs/user/signup.validation";
+import validateSignin from "../../libs/user/signin.validation";
 
 declare module "express-session" {
   interface SessionData {
