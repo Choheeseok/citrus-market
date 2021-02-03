@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import auth from "../../libs/auth";
 import date from "../../libs/date";
-import { checkOmission } from "../../libs/product/product.check";
+import validatePostProduct from "../../libs/product/post.validation";
 import ProductModel from "../../models/product/product";
 import ProductWriteForm from "../../models/product/product.write";
 
@@ -37,13 +37,7 @@ const post_products_write = async (req: Request, res: Response) => {
   }
   const product: ProductWriteForm = { ...req.body, images: filenames };
 
-  const omission: string = checkOmission(req.body);
-  if (omission) {
-    res.render("products/write.html", {
-      warningMessage: `${omission}은 필수입니다`,
-      product,
-    });
-  } else {
+  if (validatePostProduct(res, product)) {
     const data = {
       ...product,
       ownerId: auth.getUserId(req),

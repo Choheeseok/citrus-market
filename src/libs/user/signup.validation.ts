@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import UserSignupForm from "../../models/user/user.signup";
-import userSignup from "./user.signup.check";
+import userSignup from "./signup.check";
 
 const validateSignup = async (req: Request, res: Response) => {
   const user: UserSignupForm = req.body;

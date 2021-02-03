@@ -7,4 +7,4 @@ const checkOmission = (data: ProductWriteForm): string => {
   return omission;
 };
 
-export { checkOmission };
+export = { checkOmission };
