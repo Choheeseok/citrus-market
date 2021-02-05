@@ -79,6 +79,9 @@ const post_proudcts_update = async (req: Request, res: Response) => {
 
 const get_products_remove = async (req: Request, res: Response) => {
   if (auth.isLogined(req)) {
+    const productImages = await ProductModel.findById(req.params.id);
+    deleteFiles(productImages.images);
+
     await ProductModel.findByIdAndDelete(req.params.id, {}, (err) => {
       if (err) console.error(err);
     });
