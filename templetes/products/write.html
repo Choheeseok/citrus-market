@@ -1,6 +1,21 @@
 {% extends "layout/base.html" %} {% block content -%}
 
-<form action="/products/write" method="post" enctype="multipart/form-data">
+<form
+  {%
+  if
+  product._id
+  %}
+  action="/products/update/{{product._id}}"
+  {%
+  else
+  %}
+  action="/products/write"
+  {%
+  endif
+  %}
+  method="post"
+  enctype="multipart/form-data"
+>
   <div class="input-group mb-3">
     <span class="input-group-text btn-warning" id="basic-addon1">제품명</span>
     <input

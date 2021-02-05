@@ -28,6 +28,7 @@ class App {
     mongoose.connect("mongodb://127.0.0.1/citrus-market", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useFindAndModify: false, // findOneAndUpdate, findOneAndDelete
     });
   }
 

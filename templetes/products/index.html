@@ -21,9 +21,10 @@
         <div class="card-body">
           <h5 class="card-title">{{product.name}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{product.ownerNickname}}</h6>
-          <p class="card-text">{{product.description}}</p>
+          <h5 class="card-text"><strong>{{product.price.toLocaleString()}}원</strong></h5>
         </div>
-        <div class="card-footer">
+        <div class="card-footer position-relative">
+        <small class="text-muted position-absolute end-0 translate-middle-x ">조회 {{product.views}}회</small>
           <small class="text-muted">{{product.timeDiff}} 전</small>
         </div>
       </div>

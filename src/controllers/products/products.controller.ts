@@ -12,4 +12,8 @@ router.post("/write", upload.array("images"), ctrl.post_products_write);
 
 router.get("/:id", ctrl.get_products_detail);
 
+router.get("/update/:id", ctrl.get_products_update);
+
+router.post("/update/:id", upload.array("images"), ctrl.post_proudcts_update);
+
 export default router;

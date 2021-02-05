@@ -45,9 +45,39 @@ const get_products_detail = async (req: Request, res: Response) => {
   res.render("products/detail.html", { product, dateFormat });
 };
 
+const get_products_update = async (req: Request, res: Response) => {
+  const product = await ProductModel.findById(req.params.id);
+
+  if (auth.isLogined(req)) {
+    res.render("products/write.html", { product });
+  } else {
+    res.redirect("/admin/signin");
+  }
+};
+
+const post_proudcts_update = async (req: Request, res: Response) => {
+  let filenames: string[] = [];
+  if (req.files.constructor === Array) {
+    filenames = req.files.map((file) => file.filename);
+  }
+  const product: ProductWriteForm = { ...req.body, images: filenames };
+
+  if (validatePostProduct(res, product)) {
+    const data = {
+      ...product,
+      ownerId: auth.getUserId(req),
+      ownerNickname: auth.getNickname(req),
+    };
+    await ProductModel.findByIdAndUpdate(req.params.id, data);
+    res.redirect("/mypage");
+  }
+};
+
 export = {
   get_products,
   get_products_write,
   post_products_write,
   get_products_detail,
+  get_products_update,
+  post_proudcts_update,
 };

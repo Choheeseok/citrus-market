@@ -1,4 +1,4 @@
-import date from "../../libs/date";
+import date from "../date";
 
 const getTimeFormatProducts = (dbProducts: any): any[] => {
   let products: any[] = [];
