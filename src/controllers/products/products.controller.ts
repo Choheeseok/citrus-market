@@ -16,4 +16,6 @@ router.get("/update/:id", ctrl.get_products_update);
 
 router.post("/update/:id", upload.array("images"), ctrl.post_proudcts_update);
 
+router.get("/remove/:id", ctrl.get_products_remove);
+
 export default router;

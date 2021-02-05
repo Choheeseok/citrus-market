@@ -77,6 +77,15 @@ const post_proudcts_update = async (req: Request, res: Response) => {
   }
 };
 
+const get_products_remove = async (req: Request, res: Response) => {
+  if (auth.isLogined(req)) {
+    await ProductModel.findByIdAndDelete(req.params.id, {}, (err) => {
+      if (err) console.error(err);
+    });
+    res.redirect("/mypage");
+  }
+};
+
 export = {
   get_products,
   get_products_write,
@@ -84,4 +93,5 @@ export = {
   get_products_detail,
   get_products_update,
   post_proudcts_update,
+  get_products_remove,
 };
