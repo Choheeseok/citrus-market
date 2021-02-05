@@ -1,6 +1,6 @@
 import { Router } from "express";
 import ctrl from "./products.service";
-import upload from "../../libs/product/file";
+import { upload } from "../../libs/product/file";
 
 const router = Router();
 

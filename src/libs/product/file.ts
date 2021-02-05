@@ -1,5 +1,6 @@
 import multer from "multer";
 import path from "path";
+import fs from "fs";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -12,4 +13,12 @@ const upload = multer({
   }),
 });
 
-export default upload;
+const deleteFiles = (files: string[]) => {
+  files.forEach((file) => {
+    fs.unlink(`uploads/${file}`, (err) => {
+      if (err) console.error(err);
+    });
+  });
+};
+
+export { upload, deleteFiles };

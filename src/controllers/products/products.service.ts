@@ -5,6 +5,7 @@ import getTimeFormatProducts from "../../libs/product/dateFormat";
 import validatePostProduct from "../../libs/product/post.validation";
 import ProductModel from "../../models/product/product";
 import ProductWriteForm from "../../models/product/product.write";
+import { deleteFiles } from "../../libs/product/file";
 
 const get_products = async (req: Request, res: Response) => {
   const isLogined = auth.isLogined(req);
@@ -61,6 +62,9 @@ const post_proudcts_update = async (req: Request, res: Response) => {
     filenames = req.files.map((file) => file.filename);
   }
   const product: ProductWriteForm = { ...req.body, images: filenames };
+
+  const productImages = await ProductModel.findById(req.params.id);
+  deleteFiles(productImages.images);
 
   if (validatePostProduct(res, product)) {
     const data = {
